@@ -48,11 +48,7 @@ $(function() {
        it('Default hidden menu', () => {
          expect($('body').hasClass('menu-hidden')).toBe(true)
        })
-       /* TODO: Write a test that ensures the menu changes
-        * visibility when the menu icon is clicked. This test
-        * should have two expectations: does the menu display when
-        * clicked and does it hide when clicked again.
-        * Menu Visibility Test:
+       /* Menu Visibility Test:
         * If the menu-hidden class on the body is toggled on
         * expect the output to be true. (Menu is HIDDEN)
         * Otherwise if toggled off expect the output to be
