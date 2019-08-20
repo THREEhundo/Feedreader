@@ -40,34 +40,33 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* The Menu Test Suite */
     describe('The menu', () => {
-      /* TODO: Write a test that ensures the menu element is
-       * hidden by default. You'll have to analyze the HTML and
-       * the CSS to determine how we're performing the
-       * hiding/showing of the menu element.
+      /* Default Hidden Menu Test:
+       * Check to see if the menu is hidden by default.
        */
-       it('Hidden menu', () => {
-
+       it('Default hidden menu', () => {
          expect($('body').hasClass('menu-hidden')).toBe(true)
-       })
-
-       it('Menu visible and hidden on click', () => {
-
-         if ($('body').hasClass('menu-hidden')) {
-           //hide menu (menu-hidden === true)
-           expect($('body').hasClass('menu-hidden')).toBe(true)
-         } else {
-           //show menu (menu-hidden === false)
-           expect($('body').hasClass('menu-hidden')).toBe(false)
-         }
        })
        /* TODO: Write a test that ensures the menu changes
         * visibility when the menu icon is clicked. This test
         * should have two expectations: does the menu display when
         * clicked and does it hide when clicked again.
+        * Menu Visibility Test:
+        * If the menu-hidden class on the body is toggled on
+        * expect the output to be true. (Menu is HIDDEN)
+        * Otherwise if toggled off expect the output to be
+        * false. (Menu is VISIBLE)
         */
-
+       it('Menu visibility', () => {
+         if ($('body').hasClass('menu-hidden')) {
+           expect($('body').hasClass('menu-hidden')).toBe(true)
+           //hides menu (menu-hidden === true)
+         } else {
+           expect($('body').hasClass('menu-hidden')).toBe(false)
+           //shows menu (menu-hidden === false)
+         }
+       })
     });
 
 
