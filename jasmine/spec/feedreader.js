@@ -13,7 +13,7 @@ $(function() {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe('RSS Feeds', () => {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+        it('are defined', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -41,22 +41,26 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "The menu" */
-    describe('The menu', function() {
+    describe('The menu', () => {
       /* TODO: Write a test that ensures the menu element is
        * hidden by default. You'll have to analyze the HTML and
        * the CSS to determine how we're performing the
        * hiding/showing of the menu element.
        */
-       it('Hidden menu', function() {
+       it('Hidden menu', () => {
 
          expect($('body').hasClass('menu-hidden')).toBe(true)
        })
 
-       it('Menu visible and hidden on click', function() {
-         
-         spyOn($('.menu-icon-link'), 'click')
-         $('body').toggleClass('menu-hidden')
-         expect($('body').toggleClass('menu-hidden'))
+       it('Menu visible and hidden on click', () => {
+
+         if ($('body').hasClass('menu-hidden')) {
+           //hide menu (menu-hidden === true)
+           expect($('body').hasClass('menu-hidden')).toBe(true)
+         } else {
+           //show menu (menu-hidden === false)
+           expect($('body').hasClass('menu-hidden')).toBe(false)
+         }
        })
        /* TODO: Write a test that ensures the menu changes
         * visibility when the menu icon is clicked. This test
