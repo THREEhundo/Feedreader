@@ -62,6 +62,8 @@ $(function() {
 
     /* The Menu Test Suite */
     describe('The menu', () => {
+      let clickTest,
+          bodyCheck
       /* Default Hidden Menu Test:
        * Check to see if the menu is hidden by default.
        */
@@ -75,17 +77,22 @@ $(function() {
         * false. (Menu is VISIBLE)
         */
        it('Menu visibility', () => {
-         if ($('body').hasClass('menu-hidden')) {
-           expect($('body').hasClass('menu-hidden')).toBe(true)
-           //hides menu (menu-hidden === true)
-         } else {
-           expect($('body').hasClass('menu-hidden')).toBe(false)
-           //shows menu (menu-hidden === false)
-         }
+
+          $('.menu-icon-link').click()
+          //Hidden on click
+          expect($('body').hasClass('menu-hidden')).not.toBe(true)
+          $('.menu-icon-link').click()
+          //Shown on click
+          expect($('body').hasClass('menu-hidden')).toBe(true)
+
        })
     });
 
-
+    /* Initial Entries */
+    // describe('Initial Entries', function() {
+    //   beforeEach()
+    //   it()
+    // });
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
