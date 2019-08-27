@@ -1,111 +1,90 @@
-/* feedreader.js
- *
- * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
-
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
+/* Placing all of our tests within the $() function,
+ * since some of these tests may require DOM elements. I want
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
-    describe('RSS Feeds', () => {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
-        it('are defined', () => {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
-        });
-        /* URL Defined Test:
-         * Loops through each feed/index of allFeeds and
-         * expects each feed/index.url to be defined.
-         * Also expects each feed/index.url.length to not be
-         * empty.
-         */
-        it('URL defined', () => {
-          allFeeds.forEach( feed => {
-            // loops through array using forEach
-            expect(feed.url).toBeDefined()
-            // Check to see if URL is defined.
-            &&
-            expect(feed.url.length).not.toBe(0)
-            // Check to see if URL isn't empty.
-          })
-        })
-        /* Name Defined Test:
-         * Loops through each feed/index of allFeeds and
-         * expects each feed/index.name to be defined.
-         * Also expects each feed/index.name.length to not be
-         * empty.
-         */
-        it('Name defined', () => {
-          allFeeds.forEach( feed => {
-            // loops through array using forEach
-            expect(feed.name).toBeDefined()
-            // Check to see if name is defined.
-            &&
-            expect(feed.name.length).not.toBe(0)
-            // Check to see if name isn't empty.
-          })
-        })
+  /* RSS Feeds */
+  describe('RSS Feeds', () => {
+    /* are defined */
+    it('are defined', () => {
+      expect(allFeeds).toBeDefined();
+      // Checking to see that allFeeds exists.
+      expect(allFeeds.length).not.toBe(0);
+      // Checking to see that allFeeds isn't empty
     });
+    /* URL defined */
+    it('URL defined', () => {
+      allFeeds.forEach(feed => {
+        // loops through array using forEach
+        expect(feed.url).toBeDefined()
+          // Check to see if URL exists.
+          &&
+          expect(feed.url.length).not.toBe(0)
+        // Check to see if URL isn't empty.
+      })
+    })
+    /* name defined */
+    it('name defined', () => {
+      allFeeds.forEach(feed => {
+        expect(feed.name).toBeDefined()
+          // Check to see if name exists.
+          &&
+          expect(feed.name.length).not.toBe(0)
+        // Check to see if name isn't empty.
+      })
+    })
+  });
+  /* The Menu */
+  describe('The menu', () => {
+    /* default hidden menu */
+    it('default hidden menu', () => {
+      expect($('body').hasClass('menu-hidden')).toBe(true)
+      // Checks if the menu is hidden when page is loaded
+    })
+    /* menu visibility */
+    it('menu visibility', () => {
+      $('.menu-icon-link').click()
+      expect($('body').hasClass('menu-hidden')).not.toBe(true)
+      // Shown on click
+      $('.menu-icon-link').click()
+      expect($('body').hasClass('menu-hidden')).toBe(true)
+      // Hidden on click
+    })
+  });
 
+  /* Initial Entries */
+  describe('Initial Entries', () => {
+    beforeEach((done) => loadFeed(0, done))
+    /* loadFeed is an asynchronous function. There is a callback function
+     * within loadFeed that allows for the completion of a test by using done.
+     */
 
-    /* The Menu Test Suite */
-    describe('The menu', () => {
-      let clickTest,
-          bodyCheck
-      /* Default Hidden Menu Test:
-       * Check to see if the menu is hidden by default.
-       */
-       it('Default hidden menu', () => {
-         expect($('body').hasClass('menu-hidden')).toBe(true)
-       })
-       /* Menu Visibility Test:
-        * If the menu-hidden class on the body is toggled on
-        * expect the output to be true. (Menu is HIDDEN)
-        * Otherwise if toggled off expect the output to be
-        * false. (Menu is VISIBLE)
-        */
-       it('Menu visibility', () => {
+    /* completes work */
+    it('completes work', () => {
+      const feed = $('.feed')
+      expect(feed.children.length > 0).toBe(true)
+      // Checks for at least one child in the feed.
+    })
+  })
 
-          $('.menu-icon-link').click()
-          //Hidden on click
-          expect($('body').hasClass('menu-hidden')).not.toBe(true)
-          $('.menu-icon-link').click()
-          //Shown on click
-          expect($('body').hasClass('menu-hidden')).toBe(true)
+  /* New Feed Selection */
+  describe('New Feed Selection', () => {
+    beforeEach((done) => {
+      loadFeed(0)
+      loadFeed(1, done)
+    })
+    /* done can be only called once, so it is put into the second
+     * call on loadFeed. This is so that Jasmine knows when to
+     * run the spec.
+     */
 
-       })
-    });
-
-    /* Initial Entries */
-    // describe('Initial Entries', function() {
-    //   beforeEach()
-    //   it()
-    // });
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+    /* load new feed */
+    it('load new feed', () => {
+      const feed = $('.feed')
+      let feedOne = feed[0].children[0].innerText,
+        feedTwo = feed[0].children[1].innerText
+      expect(feedOne).not.toEqual(feedTwo)
+      //Compares the first <a> against the second <a>
+    })
+  })
 }());
