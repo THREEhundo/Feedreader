@@ -11,7 +11,7 @@ error free.
     * `URL defined` calls a forEach method on `allFeeds` to check to see if URL's exist and are not empty for each object in the array.
     * `name defined` calls another forEach method on `allFeeds` to check to see if names exist and are not empty for each object in the array.
 3. `The Menu` has two tests that focus on the appearance and functionality of you guessed it~ the menu.
-    * `default hidden menu` checks to see if the class `menu-hidden` is toggled on the `body` wwhen the page loads.
+    * `default hidden menu` checks to see if the class `menu-hidden` is toggled on the `body` when the page loads.
     * `menu visibility` uses `.click()` to simulate a mouse click two times. The first click is expected to show the menu and the subsequent click hides it again.
 4. `Initial Entries` runs a single test that checks the success of `loadFeed`.
     * `loadFeed` is an asynchronous function which is being called by the beforeEach method. There is a callback function within `loadFeed` that allows for the completion of the spec by calling `done()`.
