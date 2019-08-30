@@ -14,22 +14,19 @@ $(function() {
     });
     /* URL defined */
     it('URL defined', () => {
-      allFeeds.forEach(feed => {
-        // loops through array using forEach
-        expect(feed.url).toBeDefined()
-          // Check to see if URL exists.
-          &&
-          expect(feed.url.length).not.toBe(0)
-        // Check to see if URL isn't empty.
-      })
+      for (let feed of allFeeds){
+        // loops through array using the for-of loop
+        expect(feed.url).toBeTruthy()
+          // Check to see if URL exists and is not undefined.
+      }
     })
     /* name defined */
     it('name defined', () => {
-      allFeeds.forEach(feed => {
+      for (let feed of allFeeds) {
         expect(feed.name).toBeTruthy()
           // Check to see if name exists.
         // Check to see if name isn't empty.
-      })
+      }
     })
   });
   /* The Menu */

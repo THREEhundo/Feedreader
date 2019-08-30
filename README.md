@@ -1,7 +1,15 @@
 # Feed Reader Overview
 
 This web app reads RSS feeds. This is a test suite that makes sure that the web app is
-error free (RSS feed testing, RSS feed properties, menu default state, and menu hiding/showing).
+error free.
+- RSS Feed Testing
+- RSS Feed Properties
+- Menu Default State
+- Menu Hiding/Showing
+
+# Installation
+
+Directory can be cloned or a zip file can be downloaded to run files from your pc [here](https://github.com/THREEhundo/Feedreader.git).
 
 # Development Strategy
 
