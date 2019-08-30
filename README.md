@@ -1,7 +1,7 @@
 # Feed Reader Overview
 
 This web app reads RSS feeds. This is a test suite that makes sure that the web app is
-error free.
+error free (RSS feed testing, RSS feed properties, menu default state, and menu hiding/showing).
 
 # Development Strategy
 

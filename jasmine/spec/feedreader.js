@@ -26,10 +26,8 @@ $(function() {
     /* name defined */
     it('name defined', () => {
       allFeeds.forEach(feed => {
-        expect(feed.name).toBeDefined()
+        expect(feed.name).toBeTruthy()
           // Check to see if name exists.
-          &&
-          expect(feed.name.length).not.toBe(0)
         // Check to see if name isn't empty.
       })
     })
@@ -61,18 +59,23 @@ $(function() {
 
     /* completes work */
     it('completes work', () => {
-      const feed = $('.feed')
-      expect(feed.children.length > 0).toBe(true)
+      const feed = $('.feed .entry')
+      expect(feed.length > 0).toBe(true)
       // Checks for at least one child in the feed.
     })
   })
 
   /* New Feed Selection */
   describe('New Feed Selection', () => {
+    let firstFeed = {}
+
     beforeEach((done) => {
-      loadFeed(0)
-      loadFeed(1, done)
+      loadFeed(0, () => {
+        firstFeed = $('.feed').html()
+        loadFeed(1, done)
+      })
     })
+
     /* done can be only called once, so it is put into the second
      * call on loadFeed. This is so that Jasmine knows when to
      * run the spec.
@@ -80,11 +83,8 @@ $(function() {
 
     /* load new feed */
     it('load new feed', () => {
-      const feed = $('.feed')
-      let feedOne = feed[0].children[0].innerText,
-        feedTwo = feed[0].children[1].innerText
-      expect(feedOne).not.toEqual(feedTwo)
-      //Compares the first <a> against the second <a>
+      expect(firstFeed).not.toBe($('.feed').html())
+      //Compares the first feed against the second
     })
   })
 }());
