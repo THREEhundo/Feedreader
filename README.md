@@ -10,6 +10,7 @@ error free.
 # Installation
 
 Directory can be cloned or a zip file can be downloaded to run files from your pc [here](https://github.com/THREEhundo/Feedreader.git).
+Open index.html to run Jasmine in the browser.
 
 # Development Strategy
 
